@@ -1,0 +1,89 @@
+{
+  "input": {
+    "experiment": {
+      "id": 548,
+      "name": "Invite button copy",
+      "hypothesis": "A shorter invite button (\"Send invite\") gets more people to send at least one invite than \"Invite your teammates to this trip\".",
+      "status": "running",
+      "flag": "invite_cta",
+      "featureId": 305061,
+      "controlKey": "control",
+      "options": [
+        {
+          "id": 37027,
+          "key": "short",
+          "value": "short"
+        }
+      ]
+    },
+    "metric": {
+      "id": 548,
+      "name": "invite_sent",
+      "aggregation": "occurrence",
+      "expectedDirection": "increase"
+    },
+    "arms": {
+      "short": {
+        "n": 736,
+        "conversions": 109
+      },
+      "control": {
+        "n": 664,
+        "conversions": 60
+      }
+    },
+    "inference": {
+      "short": {
+        "lift": 0.6389492753623187,
+        "ciLow": 0.1516793141247199,
+        "ciHigh": 1.1262192365999175,
+        "chanceToWin": 0.9949160913471069
+      }
+    },
+    "allocation": {
+      "short": 0.5,
+      "control": 0.5
+    },
+    "srmPValueFromFlagsmith": null,
+    "excludedIdentities": 0,
+    "asOf": "2026-11-26T06:21:38.857971Z",
+    "isFinal": false,
+    "simulatedTraffic": true
+  },
+  "verdict": {
+    "decision": "SHIP",
+    "reason": "short has a 99.5% chance to beat control and its 95% credible interval (+15.2% to +112.6%) is clear of zero.",
+    "checks": [
+      {
+        "name": "Sample ratio",
+        "pass": true,
+        "detail": "p = 0.0543 from Last Call's chi-square cross-check (Flagsmith returned null); warn below 0.001"
+      },
+      {
+        "name": "Quarantined identities",
+        "pass": true,
+        "detail": "0 excluded (0.00%); Last Call's limit is 1%"
+      },
+      {
+        "name": "Minimum sample",
+        "pass": true,
+        "detail": "every arm has at least 50 identities and 5 conversions"
+      },
+      {
+        "name": "Chance to beat control",
+        "pass": true,
+        "detail": "short: 99.5%; winning at 95% or more, losing at 5% or less"
+      },
+      {
+        "name": "95% credible interval",
+        "pass": true,
+        "detail": "short: +15.2% to +112.6%; clear of zero"
+      }
+    ],
+    "total": 1400,
+    "winner": "short",
+    "rolloutDecision": "variant"
+  },
+  "plain": null,
+  "generatedAt": "2026-11-26T06:25:03.116Z"
+}

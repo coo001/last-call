@@ -1,0 +1,89 @@
+{
+  "input": {
+    "experiment": {
+      "id": 549,
+      "name": "Pricing headline",
+      "hypothesis": "Leading with the annual price gets more visitors to pick a plan than leading with the monthly price.",
+      "status": "running",
+      "flag": "pricing_headline",
+      "featureId": 305062,
+      "controlKey": "control",
+      "options": [
+        {
+          "id": 37028,
+          "key": "annual_first",
+          "value": "annual_first"
+        }
+      ]
+    },
+    "metric": {
+      "id": 549,
+      "name": "plan_selected",
+      "aggregation": "occurrence",
+      "expectedDirection": "increase"
+    },
+    "arms": {
+      "control": {
+        "n": 201,
+        "conversions": 39
+      },
+      "annual_first": {
+        "n": 221,
+        "conversions": 46
+      }
+    },
+    "inference": {
+      "annual_first": {
+        "lift": 0.07274625826662028,
+        "ciLow": -0.337447747352247,
+        "ciHigh": 0.48294026388548755,
+        "chanceToWin": 0.6359265930001159
+      }
+    },
+    "allocation": {
+      "annual_first": 0.5,
+      "control": 0.5
+    },
+    "srmPValueFromFlagsmith": null,
+    "excludedIdentities": 0,
+    "asOf": "2026-11-26T06:21:40.612996Z",
+    "isFinal": false,
+    "simulatedTraffic": true
+  },
+  "verdict": {
+    "decision": "KEEP_RUNNING",
+    "reason": "annual_first is at 63.6% and its interval (-33.7% to +48.3%) crosses zero. Inconclusive; do not call it.",
+    "checks": [
+      {
+        "name": "Sample ratio",
+        "pass": true,
+        "detail": "p = 0.330 from Last Call's chi-square cross-check (Flagsmith returned null); warn below 0.001"
+      },
+      {
+        "name": "Quarantined identities",
+        "pass": true,
+        "detail": "0 excluded (0.00%); Last Call's limit is 1%"
+      },
+      {
+        "name": "Minimum sample",
+        "pass": true,
+        "detail": "every arm has at least 50 identities and 5 conversions"
+      },
+      {
+        "name": "Chance to beat control",
+        "pass": false,
+        "detail": "annual_first: 63.6%; winning at 95% or more, losing at 5% or less"
+      },
+      {
+        "name": "95% credible interval",
+        "pass": false,
+        "detail": "annual_first: -33.7% to +48.3%; crosses zero"
+      }
+    ],
+    "total": 422,
+    "leading": "annual_first",
+    "moreIdentitiesEstimate": 12996
+  },
+  "plain": null,
+  "generatedAt": "2026-11-26T06:25:03.114Z"
+}

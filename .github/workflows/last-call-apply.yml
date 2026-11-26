@@ -1,0 +1,25 @@
+name: Last Call apply
+# Runs only after a human merged a Last Call pull request: the merge is the approval.
+on:
+  push:
+    branches: [main]
+    paths: ['.lastcall/decisions/**']
+permissions:
+  contents: read
+concurrency:
+  group: last-call-apply
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci
+      - name: End the experiment and roll out the winner
+        run: node bin/last-call.mjs apply
+        env:
+          FLAGSMITH_API_KEY: ${{ secrets.FLAGSMITH_API_KEY }}
+          FLAGSMITH_ENVIRONMENT: ${{ secrets.FLAGSMITH_ENVIRONMENT }}
+          FLAGSMITH_PROJECT_ID: ${{ vars.FLAGSMITH_PROJECT_ID }}
