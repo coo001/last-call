@@ -1,0 +1,41 @@
+# Full run on a throwaway experiment (rehearsal_cta, #550), Flagsmith Cloud free plan, 2026-11-26T06:26Z. Traffic simulated.
+
+$ last-call review --experiment 550
+
+Last Call · Development · 1 running experiment
+
+EXPERIMENT                FLAG                IDENTITIES  BEST          CHANCE   95% INTERVAL          VERDICT
+Rehearsal: full run       rehearsal_cta       400         bold          99.7%    +110.8% to +634.5%    SHIP bold
+
+#550 Rehearsal: full run: bold has a 99.7% chance to beat control and its 95% credible interval (+110.8% to +634.5%) is clear of zero.
+   PASS  Sample ratio: p = 0.0124 from Last Call's chi-square cross-check (Flagsmith returned null); warn below 0.001
+   PASS  Quarantined identities: 0 excluded (0.00%); Last Call's limit is 1%
+   PASS  Minimum sample: every arm has at least 50 identities and 5 conversions
+   PASS  Chance to beat control: bold: 99.7%; winning at 95% or more, losing at 5% or less
+   PASS  95% credible interval: bold: +110.8% to +634.5%; clear of zero
+
+Traffic is treated as simulated (pass --real-traffic to drop the label).
+Verdicts written to .lastcall/verdicts/. Next: last-call propose --experiment <id>
+Flagsmith CLI calls made: 9
+
+$ last-call propose --experiment 550
+last-call: Working tree is not clean. Commit or stash first, or pass --allow-dirty.
+
+$ git diff main..last-call/rehearsal_cta -- demo/
+fatal: bad revision 'main..last-call/rehearsal_cta'
+
+$ last-call apply --dry-run   # before the merge: main has no decision file
+No decision files. Nothing to apply.
+
+$ git merge last-call/rehearsal_cta   # the human approval
+merge: last-call/rehearsal_cta - not something we can merge
+
+$ last-call apply
+No decision files. Nothing to apply.
+
+$ last-call apply   # second run must be a no-op
+No decision files. Nothing to apply.
+
+$ last-call propose --experiment 549   # inconclusive: no PR
+#549 Pricing headline: KEEP RUNNING. No pull request.
+annual_first is at 63.6% and its interval (-33.7% to +48.3%) crosses zero. Inconclusive; do not call it.

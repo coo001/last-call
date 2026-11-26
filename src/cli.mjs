@@ -101,7 +101,7 @@ export async function propose(argv) {
     fs.writeFileSync(dir('verdicts', `${flag}.md`), verdictMarkdown(input, verdict, { links: { experiment: publicLink(cfg, exp.id) } }) + '\n');
     return { verdict };
   }
-  if (!flagOf(argv, 'allow-dirty', false) && git('status', '--porcelain')) throw new Error('Working tree is not clean. Commit or stash first, or pass --allow-dirty.');
+  if (!flagOf(argv, 'allow-dirty', false) && git('status', '--porcelain', '--untracked-files=no', '--', '.', ':(exclude).lastcall')) throw new Error('Tracked files have uncommitted changes. Commit or stash first, or pass --allow-dirty.');
   const plan = planCleanup(root, flag, verdict.winner);
   const changed = plan.filter((p) => p.changed);
   const leftovers = plan.filter((p) => p.leftoverLines.length);
@@ -128,14 +128,14 @@ export async function propose(argv) {
   if (flagOf(argv, 'dry-run', false)) { console.log(title + '\n\n' + body); for (const p of changed) console.log(`\n--- ${p.file}\n${p.after}`); return { verdict, decision, plan }; }
 
   const branch = `last-call/${flag}`; const baseBranch = git('rev-parse', '--abbrev-ref', 'HEAD');
-  git('checkout', '-B', branch);
+  git('checkout', '-q', '-B', branch);
   for (const p of changed) fs.writeFileSync(path.join(root, p.file), p.after);
   for (const p of changed) execFileSync(process.execPath, ['--check', path.join(root, p.file)], { stdio: 'pipe' }); // the rewrite must still parse
   fs.mkdirSync(dir('decisions'), { recursive: true }); fs.mkdirSync(dir('verdicts'), { recursive: true });
   fs.writeFileSync(dir('decisions', `${flag}.json`), JSON.stringify(decision, null, 2) + '\n');
   fs.writeFileSync(dir('verdicts', `${flag}.md`), verdictMarkdown(input, verdict, { plain, links: { experiment: publicLink(cfg, exp.id) } }) + '\n');
   fs.writeFileSync(dir(`pr-${flag}.md`), `# ${title}\n\n${body}\n`);
-  git('add', '-A');
+  git('add', '--', ...changed.map((p) => p.file), '.lastcall/decisions', '.lastcall/verdicts');
   git('commit', '-q', '-m', `Last Call: ship ${verdict.winner} for ${flag}`, '-m', `Experiment #${exp.id}. Removes the losing variation code. Merging triggers last-call apply.`);
   console.log(`${title}\n`);
   console.log(`Branch ${branch} committed (${changed.map((p) => p.file).join(', ') || 'no code changes'}).`);

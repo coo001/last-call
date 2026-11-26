@@ -4,3 +4,4 @@ node_modules/
 *.log
 .lastcall/cache/
 .DS_Store
+.lastcall/pr-*.md
