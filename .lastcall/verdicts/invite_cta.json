@@ -46,7 +46,7 @@
     },
     "srmPValueFromFlagsmith": null,
     "excludedIdentities": 0,
-    "asOf": "2026-11-26T06:28:59.316550Z",
+    "asOf": "2026-11-26T06:39:18.388995Z",
     "isFinal": false,
     "simulatedTraffic": true
   },
@@ -84,6 +84,6 @@
     "winner": "short",
     "rolloutDecision": "variant"
   },
-  "plain": "We tested if a shorter invite button gets more people to send at least one invite. We are shipping the short variant because it has a 99.5% chance to beat control and its 95% credible interval is clear of zero.",
-  "generatedAt": "2026-11-26T06:29:35.892Z"
+  "plain": null,
+  "generatedAt": "2026-11-26T06:39:23.817Z"
 }
