@@ -3,11 +3,9 @@
 **Experiment:** Invite button copy (#548, flag `invite_cta`) · [open in Flagsmith](https://app.flagsmith.com/project/56447/environment/<environment-key>/experiments/548)
 **Hypothesis:** A shorter invite button ("Send invite") gets more people to send at least one invite than "Invite your teammates to this trip".
 **Metric:** `invite_sent` (occurrence, expected to increase)
-**Results as of:** 2026-11-26T06:28:59.316550Z
+**Results as of:** 2026-11-26T06:39:18.388995Z
 
 **Why:** short has a 99.5% chance to beat control and its 95% credible interval (+16.2% to +114.2%) is clear of zero.
-
-**In plain words** (written by an LLM from the numbers below): We tested if a shorter invite button gets more people to send at least one invite. We are shipping the short variant because it has a 99.5% chance to beat control and its 95% credible interval is clear of zero.
 
 | Variation | Identities | Converted | Rate | Lift vs control | 95% credible interval | Chance to beat control |
 |---|---:|---:|---:|---:|---|---:|

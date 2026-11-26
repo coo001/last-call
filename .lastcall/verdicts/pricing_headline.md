@@ -3,11 +3,9 @@
 **Experiment:** Pricing headline (#549, flag `pricing_headline`) · [open in Flagsmith](https://app.flagsmith.com/project/56447/environment/<environment-key>/experiments/549)
 **Hypothesis:** Leading with the annual price gets more visitors to pick a plan than leading with the monthly price.
 **Metric:** `plan_selected` (occurrence, expected to increase)
-**Results as of:** 2026-11-26T06:28:48.372456Z
+**Results as of:** 2026-11-26T06:39:10.504687Z
 
 **Why:** annual_first is at 64.5% and its interval (-33.4% to +49.0%) crosses zero. Inconclusive; do not call it.
-
-**In plain words** (written by an LLM from the numbers below): We tested whether leading with the annual price gets more visitors to pick the plan than leading with the monthly price. The decision is to keep running because annual first is at 64.5% and its interval (-33.4% to +49.0%) crosses zero.
 
 | Variation | Identities | Converted | Rate | Lift vs control | 95% credible interval | Chance to beat control |
 |---|---:|---:|---:|---:|---|---:|

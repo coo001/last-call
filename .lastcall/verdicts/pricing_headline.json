@@ -46,7 +46,7 @@
     },
     "srmPValueFromFlagsmith": null,
     "excludedIdentities": 0,
-    "asOf": "2026-11-26T06:28:48.372456Z",
+    "asOf": "2026-11-26T06:39:10.504687Z",
     "isFinal": false,
     "simulatedTraffic": true
   },
@@ -84,6 +84,6 @@
     "leading": "annual_first",
     "moreIdentitiesEstimate": 11375
   },
-  "plain": "We tested whether leading with the annual price gets more visitors to pick the plan than leading with the monthly price. The decision is to keep running because annual first is at 64.5% and its interval (-33.4% to +49.0%) crosses zero.",
-  "generatedAt": "2026-11-26T06:29:34.949Z"
+  "plain": null,
+  "generatedAt": "2026-11-26T06:39:23.815Z"
 }

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "experimentId": 548,
+  "experimentName": "Invite button copy",
+  "featureId": 305061,
+  "flag": "invite_cta",
+  "rolloutDecision": "variant",
+  "winner": "short",
+  "rolloutVariant": 37027,
+  "resultsAsOf": "2026-11-26T06:39:18.388995Z",
+  "chanceToWin": 0.9954176711985085,
+  "ciLow": 0.16154061328660713,
+  "ciHigh": 1.1419419737780692,
+  "simulatedTraffic": true,
+  "proposedAt": "2026-11-26T06:41:44.534Z"
+}
