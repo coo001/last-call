@@ -24,7 +24,7 @@
     },
     "arms": {
       "control": {
-        "n": 201,
+        "n": 202,
         "conversions": 39
       },
       "annual_first": {
@@ -34,10 +34,10 @@
     },
     "inference": {
       "annual_first": {
-        "lift": 0.07274625826662028,
-        "ciLow": -0.337447747352247,
-        "ciHigh": 0.48294026388548755,
-        "chanceToWin": 0.6359265930001159
+        "lift": 0.07808330432764825,
+        "ciLow": -0.33428270259203247,
+        "ciHigh": 0.490449311247329,
+        "chanceToWin": 0.6447288047791182
       }
     },
     "allocation": {
@@ -46,18 +46,18 @@
     },
     "srmPValueFromFlagsmith": null,
     "excludedIdentities": 0,
-    "asOf": "2026-11-26T06:21:40.612996Z",
+    "asOf": "2026-11-26T06:28:48.372456Z",
     "isFinal": false,
     "simulatedTraffic": true
   },
   "verdict": {
     "decision": "KEEP_RUNNING",
-    "reason": "annual_first is at 63.6% and its interval (-33.7% to +48.3%) crosses zero. Inconclusive; do not call it.",
+    "reason": "annual_first is at 64.5% and its interval (-33.4% to +49.0%) crosses zero. Inconclusive; do not call it.",
     "checks": [
       {
         "name": "Sample ratio",
         "pass": true,
-        "detail": "p = 0.330 from Last Call's chi-square cross-check (Flagsmith returned null); warn below 0.001"
+        "detail": "p = 0.356 from Last Call's chi-square cross-check (Flagsmith returned null); warn below 0.001"
       },
       {
         "name": "Quarantined identities",
@@ -72,18 +72,18 @@
       {
         "name": "Chance to beat control",
         "pass": false,
-        "detail": "annual_first: 63.6%; winning at 95% or more, losing at 5% or less"
+        "detail": "annual_first: 64.5%; winning at 95% or more, losing at 5% or less"
       },
       {
         "name": "95% credible interval",
         "pass": false,
-        "detail": "annual_first: -33.7% to +48.3%; crosses zero"
+        "detail": "annual_first: -33.4% to +49.0%; crosses zero"
       }
     ],
-    "total": 422,
+    "total": 423,
     "leading": "annual_first",
-    "moreIdentitiesEstimate": 12996
+    "moreIdentitiesEstimate": 11375
   },
-  "plain": null,
-  "generatedAt": "2026-11-26T06:25:03.114Z"
+  "plain": "We tested whether leading with the annual price gets more visitors to pick the plan than leading with the monthly price. The decision is to keep running because annual first is at 64.5% and its interval (-33.4% to +49.0%) crosses zero.",
+  "generatedAt": "2026-11-26T06:29:34.949Z"
 }

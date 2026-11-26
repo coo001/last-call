@@ -1,6 +1,6 @@
-# Full run on a throwaway experiment (rehearsal_cta, #550), Flagsmith Cloud free plan, 2026-11-26T06:26Z. Traffic simulated.
+# Full run on a throwaway experiment (rehearsal_cta, #550), Flagsmith Cloud free plan, 2026-11-26T06:27Z. Traffic simulated.
 
-$ last-call review --experiment 550
+$ last-call review --experiment 550 --no-refresh
 
 Last Call · Development · 1 running experiment
 
@@ -16,25 +16,52 @@ Rehearsal: full run       rehearsal_cta       400         bold          99.7%   
 
 Traffic is treated as simulated (pass --real-traffic to drop the label).
 Verdicts written to .lastcall/verdicts/. Next: last-call propose --experiment <id>
-Flagsmith CLI calls made: 9
+Flagsmith CLI calls made: 7
 
 $ last-call propose --experiment 550
-last-call: Working tree is not clean. Commit or stash first, or pass --allow-dirty.
+Last Call: ship `bold` for rehearsal_cta (99.7%)
+
+Branch last-call/rehearsal_cta committed (demo/components/rehearsal-banner.mjs).
+.lastcall/decisions/rehearsal_cta.json | 16 ++++++
+ .lastcall/verdicts/rehearsal_cta.json  | 89 ++++++++++++++++++++++++++++++++++
+ .lastcall/verdicts/rehearsal_cta.md    | 24 +++++++++
+ demo/components/rehearsal-banner.mjs   |  7 +--
+ 4 files changed, 130 insertions(+), 6 deletions(-)
+
+Pull request body: .lastcall/pr-rehearsal_cta.md
+Open it with: last-call propose --experiment 550 --open-pr   (needs git remote + gh)
 
 $ git diff main..last-call/rehearsal_cta -- demo/
-fatal: bad revision 'main..last-call/rehearsal_cta'
+diff --git a/demo/components/rehearsal-banner.mjs b/demo/components/rehearsal-banner.mjs
+index de10799..18d77bc 100644
+--- a/demo/components/rehearsal-banner.mjs
++++ b/demo/components/rehearsal-banner.mjs
+@@ -1,10 +1,5 @@
+-import { pick } from '../lib/pick.mjs';
+ 
+ export async function rehearsalBanner(flags, userId) {
+-  const flag = await flags.getExperimentFlag('rehearsal_cta', userId);
+-  const text = pick(flag, {
+-    control: 'Try the planner',
+-    bold: 'Plan your trip now',
+-  });
++  const text = 'Plan your trip now';
+   return `<a class="banner">${text}</a>`;
+ }
 
 $ last-call apply --dry-run   # before the merge: main has no decision file
 No decision files. Nothing to apply.
 
 $ git merge last-call/rehearsal_cta   # the human approval
-merge: last-call/rehearsal_cta - not something we can merge
+1f2b4ab Merge Last Call: ship bold for rehearsal_cta
+2cf05b7 Last Call: ship bold for rehearsal_cta
 
 $ last-call apply
-No decision files. Nothing to apply.
+#550 rehearsal_cta: experiment ended at 2026-11-26T06:28:16.026491Z. Flagsmith now serves "bold" to everyone on rehearsal_cta (rollout_decision=variant).
+   results as of 2026-11-26T06:26:55.967556Z; https://app.flagsmith.com/project/56447/environment/<environment-key>/experiments/550
 
 $ last-call apply   # second run must be a no-op
-No decision files. Nothing to apply.
+#550 rehearsal_cta: already completed (variant 37040) - nothing to do.
 
 $ last-call propose --experiment 549   # inconclusive: no PR
 #549 Pricing headline: KEEP RUNNING. No pull request.

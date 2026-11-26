@@ -24,8 +24,8 @@
     },
     "arms": {
       "short": {
-        "n": 736,
-        "conversions": 109
+        "n": 737,
+        "conversions": 110
       },
       "control": {
         "n": 664,
@@ -34,10 +34,10 @@
     },
     "inference": {
       "short": {
-        "lift": 0.6389492753623187,
-        "ciLow": 0.1516793141247199,
-        "ciHigh": 1.1262192365999175,
-        "chanceToWin": 0.9949160913471069
+        "lift": 0.6517412935323381,
+        "ciLow": 0.16154061328660713,
+        "ciHigh": 1.1419419737780692,
+        "chanceToWin": 0.9954176711985085
       }
     },
     "allocation": {
@@ -46,18 +46,18 @@
     },
     "srmPValueFromFlagsmith": null,
     "excludedIdentities": 0,
-    "asOf": "2026-11-26T06:21:38.857971Z",
+    "asOf": "2026-11-26T06:28:59.316550Z",
     "isFinal": false,
     "simulatedTraffic": true
   },
   "verdict": {
     "decision": "SHIP",
-    "reason": "short has a 99.5% chance to beat control and its 95% credible interval (+15.2% to +112.6%) is clear of zero.",
+    "reason": "short has a 99.5% chance to beat control and its 95% credible interval (+16.2% to +114.2%) is clear of zero.",
     "checks": [
       {
         "name": "Sample ratio",
         "pass": true,
-        "detail": "p = 0.0543 from Last Call's chi-square cross-check (Flagsmith returned null); warn below 0.001"
+        "detail": "p = 0.0511 from Last Call's chi-square cross-check (Flagsmith returned null); warn below 0.001"
       },
       {
         "name": "Quarantined identities",
@@ -77,13 +77,13 @@
       {
         "name": "95% credible interval",
         "pass": true,
-        "detail": "short: +15.2% to +112.6%; clear of zero"
+        "detail": "short: +16.2% to +114.2%; clear of zero"
       }
     ],
-    "total": 1400,
+    "total": 1401,
     "winner": "short",
     "rolloutDecision": "variant"
   },
-  "plain": null,
-  "generatedAt": "2026-11-26T06:25:03.116Z"
+  "plain": "We tested if a shorter invite button gets more people to send at least one invite. We are shipping the short variant because it has a 99.5% chance to beat control and its 95% credible interval is clear of zero.",
+  "generatedAt": "2026-11-26T06:29:35.892Z"
 }

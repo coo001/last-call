@@ -7,7 +7,7 @@ const LABEL = { SHIP: 'SHIP', KEEP_RUNNING: 'KEEP RUNNING', STOP: 'STOP: do not 
 
 export function verdictMarkdown(input, verdict, { plain, links = {} } = {}) {
   const rate = (a) => (a.n ? `${((a.conversions / a.n) * 100).toFixed(1)}%` : '-');
-  const rows = Object.entries(input.arms).map(([k, a]) => {
+  const rows = Object.entries(input.arms).sort(([a], [b]) => (a === input.experiment.controlKey ? -1 : b === input.experiment.controlKey ? 1 : 0)).map(([k, a]) => {
     const i = input.inference[k];
     return `| \`${k}\`${k === input.experiment.controlKey ? ' (control)' : ''} | ${a.n} | ${a.conversions} | ${rate(a)} | ${i ? pct(i.lift) : 'baseline'} | ${i ? `${pct(i.ciLow)} to ${pct(i.ciHigh)}` : '-'} | ${i ? `${(i.chanceToWin * 100).toFixed(1)}%` : '-'} |`;
   });
@@ -38,14 +38,14 @@ export function verdictMarkdown(input, verdict, { plain, links = {} } = {}) {
   return lines.join('\n');
 }
 
-export async function plainWords(input, verdict, { apiKey = process.env.GEMINI_API_KEY, model = process.env.GEMINI_MODEL || 'gemini-2.5-flash' } = {}) {
+export async function plainWords(input, verdict, { apiKey = process.env.GEMINI_API_KEY, model = process.env.GEMINI_MODEL || 'gemini-3.5-flash-lite' } = {}) {
   if (!apiKey) return null;
   const facts = { decision: verdict.decision, winner: verdict.winner || null, reason: verdict.reason, hypothesis: input.experiment.hypothesis, metric: input.metric.name, arms: input.arms, inference: input.inference, moreIdentitiesEstimate: verdict.moreIdentitiesEstimate ?? null };
   const prompt = `You explain an A/B test result to a product teammate in two short sentences. The decision is already made by fixed rules; do not change it, do not add advice, do not invent numbers, and use only numbers that appear in the JSON. Say what was tested, what the decision is and the one reason. No markdown.\n\n${JSON.stringify(facts)}`;
   try {
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
       method: 'POST', headers: { 'content-type': 'application/json', 'x-goog-api-key': apiKey },
-      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 400, thinkingConfig: { thinkingBudget: 0 } } }),
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 400 } }),
     });
     if (!res.ok) return null;
     const text = (await res.json())?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('').trim();

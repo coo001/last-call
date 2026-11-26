@@ -86,7 +86,7 @@ export function collapse(source, flag, winner) {
     if (changed && uses === 1) { src = src.replace(v.line, ''); changed++; }
   }
   // 4. drop the pick import when it is unused
-  if (changed && !/\bpick\(/.test(src)) src = src.replace(/^import\s*\{\s*pick\s*\}\s*from\s*['"][^'"]+['"];?[ \t]*\n/m, '');
+  if (changed && !/\bpick\(/.test(src)) src = src.replace(/^import\s*\{\s*pick\s*\}\s*from\s*['"][^'"]+['"];?[ \t]*\n(?:[ \t]*\n)?/m, '');
   const leftover = src.split('\n').map((l, i) => (l.includes(flag) ? i + 1 : 0)).filter(Boolean);
   return { source: src, changed: changed > 0, leftoverLines: leftover, notes };
 }
