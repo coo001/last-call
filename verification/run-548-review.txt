@@ -1,0 +1,25 @@
+
+Last Call · Development · 2 running experiments
+
+EXPERIMENT                FLAG                IDENTITIES  BEST          CHANCE   95% INTERVAL          VERDICT
+Pricing headline          pricing_headline    423         annual_first  64.5%    -33.4% to +49.0%      KEEP RUNNING
+Invite button copy        invite_cta          1401        short         99.5%    +16.2% to +114.2%     SHIP short
+
+#549 Pricing headline: annual_first is at 64.5% and its interval (-33.4% to +49.0%) crosses zero. Inconclusive; do not call it.
+   PASS  Sample ratio: p = 0.356 from Last Call's chi-square cross-check (Flagsmith returned null); warn below 0.001
+   PASS  Quarantined identities: 0 excluded (0.00%); Last Call's limit is 1%
+   PASS  Minimum sample: every arm has at least 50 identities and 5 conversions
+   FAIL  Chance to beat control: annual_first: 64.5%; winning at 95% or more, losing at 5% or less
+   FAIL  95% credible interval: annual_first: -33.4% to +49.0%; crosses zero
+   Rough estimate: about 11,375 more identities needed (Last Call's own rule of thumb).
+
+#548 Invite button copy: short has a 99.5% chance to beat control and its 95% credible interval (+16.2% to +114.2%) is clear of zero.
+   PASS  Sample ratio: p = 0.0511 from Last Call's chi-square cross-check (Flagsmith returned null); warn below 0.001
+   PASS  Quarantined identities: 0 excluded (0.00%); Last Call's limit is 1%
+   PASS  Minimum sample: every arm has at least 50 identities and 5 conversions
+   PASS  Chance to beat control: short: 99.5%; winning at 95% or more, losing at 5% or less
+   PASS  95% credible interval: short: +16.2% to +114.2%; clear of zero
+
+Traffic is treated as simulated (pass --real-traffic to drop the label).
+Verdicts written to .lastcall/verdicts/. Next: last-call propose --experiment <id>
+Flagsmith CLI calls made: 16

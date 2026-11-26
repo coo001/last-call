@@ -1,0 +1,18 @@
+Last Call: ship `short` for invite_cta (99.5%)
+
+Branch last-call/invite_cta committed (demo/components/invite-button.mjs).
+.lastcall/decisions/invite_cta.json      | 16 ++++++++++++++++
+ .lastcall/verdicts/invite_cta.json       |  6 +++---
+ .lastcall/verdicts/invite_cta.md         |  4 +---
+ .lastcall/verdicts/pricing_headline.json |  6 +++---
+ .lastcall/verdicts/pricing_headline.md   |  4 +---
+ demo/components/invite-button.mjs        |  7 +------
+ 6 files changed, 25 insertions(+), 18 deletions(-)
+remote: 
+remote: Create a pull request for 'last-call/invite_cta' on GitHub by visiting:        
+remote:      https://github.com/coo001/last-call/pull/new/last-call/invite_cta        
+remote: 
+To https://github.com/coo001/last-call.git
+ * [new branch]      last-call/invite_cta -> last-call/invite_cta
+https://github.com/coo001/last-call/pull/1
+
