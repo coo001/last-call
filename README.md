@@ -54,7 +54,7 @@ npx last-call apply
 | 3. Approve | a human merges the PR | | No |
 | 4. Apply | `last-call apply` (GitHub Action on merge) | Re-reads the experiment, refuses if the flag does not match the decision file or the verdict is no longer SHIP for the same winner, then calls `complete` | **Yes, one call** |
 
-The cleanup, from the real run:
+The cleanup, as produced for the rehearsal flag:
 
 ```diff
 -import { pick } from '../lib/pick.mjs';
